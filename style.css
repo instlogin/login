@@ -116,7 +116,7 @@ body
 .form-btn
 {
   margin: 1rem 0vw 0vw 1.5rem;
-  margin-left: 1.5rem;
+  margin-left: 1.7rem;
   height: 3rem;
   background-color: #3897f0;
   font-size: 1.4rem;
@@ -125,7 +125,7 @@ body
   border: none;
   border-radius: .4rem;
   cursor: pointer;
-  width: 82vw;
+  width: 80vw;
   text-align: center;
 }
 
